@@ -5,9 +5,11 @@ import java.net.URL;
 import java.net.URLConnection;
 
 public class PageDownloader {
-    private String text;
+    private StringBuilder text;
 
     public String htmlCodeDownload(String urlPath) throws IOException {
+        text = new StringBuilder();
+
         URL url = new URL(urlPath);
         URLConnection urlConnection = url.openConnection();
         InputStream inputStream = urlConnection.getInputStream();
@@ -15,9 +17,9 @@ public class PageDownloader {
         BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
         String line;
         while( (line = bufferedReader.readLine()) != null ){
-            System.out.println(line);
+            text.append(line);
         }
-        return null;
+        return text.toString();
     }
 
 
