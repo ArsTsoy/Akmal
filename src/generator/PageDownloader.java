@@ -3,13 +3,21 @@ package generator;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class PageDownloader {
     private StringBuilder text;
+    private HashSet<String> symbols;
 
-    public String htmlCodeDownload(String urlPath) throws IOException {
+    public PageDownloader(){
         text = new StringBuilder();
+    }
 
+    public Set<String> htmlCodeDownload(String urlPath) throws IOException {
         URL url = new URL(urlPath);
         URLConnection urlConnection = url.openConnection();
         InputStream inputStream = urlConnection.getInputStream();
@@ -19,7 +27,17 @@ public class PageDownloader {
         while( (line = bufferedReader.readLine()) != null ){
             text.append(line);
         }
-        return text.toString();
+
+        generateSymbols();
+        return symbols;
+    }
+
+    private void generateSymbols(){
+        Pattern pattern = Pattern.compile("[A-z]");
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()){
+            symbols.add(matcher.group(0));
+        }
     }
 
 
