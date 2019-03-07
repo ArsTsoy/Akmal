@@ -14,7 +14,7 @@ public class PasswordGenerator {
         switch (typeOfRegister){
             case UP_REGISTER:
                 PageDownloader pageDownloader = new PageDownloader();
-                pageDownloader.htmlCodeDownload(urlSource);
+//                pageDownloader.htmlCodeDownload(urlSource);
 
                 break;
             case DOWN_REGISTER:
@@ -22,5 +22,6 @@ public class PasswordGenerator {
             case ALL_REGISTER:
                 break;
         }
+        return null;
     }
 }

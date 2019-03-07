@@ -1,15 +1,27 @@
 package generator;
 
-import java.io.IOException;
+import com.sun.scenario.effect.impl.sw.sse.SSEBlend_SRC_OUTPeer;
 
 public class Main {
     public static void main(String[] args) {
-        PageDownloader wordDownloader = new PageDownloader();
-        try {
-            wordDownloader.htmlCodeDownload("http://www.dmc.fmph.uniba.sk/public_html/doc/Java/ch2.htm");
-        } catch (IOException e) {
-            System.out.println("не удалось подключиться к сайту");
-            e.printStackTrace();
+        StringBuilder res = new StringBuilder();
+        String text = "This    is example!";
+        String[] arr = text.split(" ");
+        for (int i = 0; i < arr.length; i++) {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.append(arr[i]);
+            if(stringBuilder.length() != 0){
+                res.append(stringBuilder.reverse());
+            }
+            res.append(" ");
+
         }
+        System.out.println(res);
     }
+
+
+//    public static String reverseWord(final String string) throws InterruptedException {
+//
+//
+//    }
 }
